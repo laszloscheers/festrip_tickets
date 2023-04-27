@@ -1,0 +1,47 @@
+<style>
+body{
+    background-color:#198754;
+}
+h1,h2{
+    font-weight: bold;
+}
+.text-btn{
+
+    font-size: 1.2rem;
+    background-color: #87197a;
+    border-color: #87197a;
+}
+.text-center{
+  font-weight: bold;
+}
+</style>
+<div class="d-flex justify-content-center flex-wrap">
+  <div class="card m-4" style="width: 32rem;">
+      <div class="p-2 card-header text-center">
+        <h2>WATCH <%= @product.title.upcase %>'S VIDEO</h2>
+      </div>
+      <div class="card-body bg-dark d-flex justify-content-center align-items-center">
+          <iframe class="border border-secondary" width="560" height="315" src="<%= @product.youtube_video_path %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="card-footer d-flex justify-content-center">
+        <%= link_to "Back to Festivals", festivals_path, class: "btn btn-dark m-4 text-btn" %>
+      </div>
+  </div>
+  <div class="card m-4" style="width: 32rem;">
+      <%= image_tag @product.image_link, alt: @product.title, class: "card-img-top img-fluid" %>
+    <div class="card-body p-3">
+      <h5 class="card-title mb-2 text-center"><%= @product.title %></h5>
+      <p class="card-text"><%= @product.description %></p>
+    </div>
+    <div class="card-footer form-group px-4 py-3 m-3 border border-dark rounded">
+      <h5 class="card-text d-flex justify-content-end">€<%= @product.price.to_i %></h5>
+      <%= form_for @order_item do |f| %>
+        <%= f.hidden_field :product_id, :value => @product.id %>
+        <%= f.number_field :quantity, :value => 1, :min => 1, class: "form-control" %>
+        <div class="d-flex justify-content-end">
+          <%= f.submit "Add to Basket ", class: "btn btn-secondary mt-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

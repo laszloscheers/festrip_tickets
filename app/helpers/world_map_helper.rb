@@ -1,0 +1,2 @@
+module WorldMapHelper
+end

@@ -1,0 +1,78 @@
+
+<%= stylesheet_link_tag "basket_show" %>
+<style>
+body{
+    background-color:#198754;
+}
+.bold-stuff{
+    font-weight: bold;
+}
+.text-btn{
+    background-color: #DC143C;
+}
+@media (max-width:562px) {
+.main { flex-direction: column; }
+.col { margin: 3% 0% 3% 0%; padding: 0 }
+}
+</style>
+<div class="d-flex justify-content-center">
+  <div class="card m-5">
+      <div class="row">
+          <div class="col-md-8 cart">
+              <div class="title">
+                  <div class="row">
+                      <div class="col"><h4><b>Shopping Basket</b></h4></div>
+                      <div class="col align-self-center text-right bold-stuff"><%= current_order.order_items.size %> items</div>
+                  </div>
+              </div>
+              <% @order_items.each do |item| %>    
+                <div class="row border-top border-bottom">
+                    <div class="row main align-items-center">
+                        <div class="col">
+                            <div class="row bold-stuff"><%= item.product.title %></div>
+                        </div>
+                        <div class="col d-flex flex-row">
+                        <%= form_for item do |f| %>
+                            <div class="col">
+                              <%= f.hidden_field :product_id, :value => item.product.id %>
+                              <%= f.number_field :quantity, :value => item.quantity.to_i, class: "mb-0" %>
+                            </div>
+                        </div>
+                        <div class="col bold-stuff">x &euro; <%= item.product.price %> <span class="close"></span></div>
+                        <div class="col bold-stuff">Subtotal &euro;<%= item.total %></div>
+                        <div class="col"><%= f.submit "Update", class: "btn btn-secondary rounded mb-0" %></div>
+                        <% end %>
+                        <div class="col"><%= button_to 'Remove', order_item_path(item), method: :delete, class: "btn btn-danger rounded mt-0 text-btn" %></div>
+
+                    </div>
+                </div>
+              <% end %>
+              <div class="back-to-shop"><%= link_to "Continue shopping", festivals_path, class: "btn btn-dark" %></div>
+          </div>
+          <div class="col-md-4 summary">
+              <div><h5><b>Summary</b></h5></div>
+              <hr>
+              <div class="row">
+                  <div class="col mb-2" style="padding-left:0;">ITEMS <%= current_order.order_items.size %></div>
+                  <div class="col text-end">&euro; <%= current_order.subtotal %></div>
+              </div>
+              <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                  <div class="col">VAT</div>
+                  <div class="col text-end">23%</div>
+              </div>
+              <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                  <div class="col bold-stuff">TOTAL PRICE</div>
+                  <div class="col text-end bold-stuff">&euro; <%= current_order.total %></div>
+              </div>
+              <div class="d-flex justify-content-end">
+
+                <% if user_signed_in? %>
+                    <%= button_to 'Purchase', purchases_path, method: :create, class: "btn btn-success rounded" %>
+                <% else %>
+                    <%= link_to "Purchase", new_user_session_path, class: "btn btn-success rounded" %>
+                <% end %>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

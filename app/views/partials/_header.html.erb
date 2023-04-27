@@ -1,0 +1,60 @@
+<style>
+.important-stuff{
+    color:#fff !important;
+}
+.important-stuff:hover{
+    color: #646FD4 !important;
+}
+.button_to{
+  padding: 0 !important;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid mx-4">
+
+    <%= link_to root_path, class: "navbar-brand" do %><%= image_tag "/fest-logo.png", alt: "Web Page Logo", class: "img-fluid me-2" %><% end %><%= link_to "Festrip", root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".dual-collapse2" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item active">
+                <%= link_to "Home", root_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Festivals", festivals_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "World Map", world_map_index_path, class: "nav-link" %>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 ">
+        <ul class="navbar-nav ms-auto">
+            <%if current_order.subtotal != 0 %>
+              <li class="nav-item pe-3 d-flex align-items-center">
+                <%= link_to basket_path, class: "nav-link important-stuff" do %><i class="me-1 fa fa-shopping-cart" aria-hidden="true" style="color:#646FD4"></i><% end %><%= link_to "Basket: #{current_order.order_items.size} items: #{current_order.subtotal}€", basket_path, class: "nav-link important-stuff" %>
+              </li>
+              
+            <% end %>
+            <% if user_signed_in? %>
+              <li class="nav-item pe-3 d-flex align-items-center">
+                  <%= link_to profiles_path, class: "nav-link important-stuff" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#646FD4"></i><% end %><%= link_to "Profile", profiles_path, class: "nav-link important-stuff" %>
+              </li>
+              <li class="nav-item pe-3 d-flex align-items-center">
+                  <%= button_to "Sign Out", destroy_user_session_path, class: "nav-link bg-dark important-stuff", method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item d-flex align-items-center">
+                  <%= link_to new_user_session_path, class: "nav-link d-flex align-items-center important-stuff" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#646FD4"></i><% end %><%= link_to "Log In", new_user_session_path, class: "nav-link d-flex align-items-center important-stuff" %><%= link_to "/", help_index_path, class: "p-1 nav-link btn disabled" %>
+              </li>
+              <li class="nav-item d-flex align-items-center">
+                  <%= link_to new_user_registration_path, class: "nav-link  important-stuff" do %><i class="me-1 fa fa-user" aria-hidden="true" style="color:#646FD4"></i><% end %><%= link_to "Sign Up", new_user_registration_path, class: "nav-link  important-stuff" %>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+  </div>
+</nav>

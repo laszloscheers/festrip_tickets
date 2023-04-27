@@ -1,0 +1,16 @@
+Hi <%= @ticket[2] %>!
+
+
+Your Ticket
+
+<% @ticket[1].each do |item| %>
+    <%= item.product.title %>
+    <%= item.product.price %>
+
+    Subtotal: <%= item.total %>
+<% end %>
+Vat 23%
+
+Total without tax: <%= @ticket[3] %>
+
+Total: <%= @ticket[0] %>
