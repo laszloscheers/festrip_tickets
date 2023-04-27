@@ -1,0 +1,44 @@
+<h2>Hi <%= @ticket[2] %>!</h2>
+
+<table>
+  <thead>
+
+    <tr>
+      <th>Your Ticket</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <% @ticket[1].each do |item| %>
+      <tr>
+        <th><%= item.quantity %></th>
+        <th><%= item.product.title %></th>
+        <th><%= item.product.price %></th>
+        <th><h4>Subtotal: <%= item.total %>
+       </tr>
+    <% end %>
+
+  </tbody>
+</table>
+<table>
+  <thead>
+
+    <tr>
+      <th>Total without VAT</th>
+      <th>VAT</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+      <tr>
+        <th><%= @ticket[0] %></th>
+        <th>23%</th>
+       </tr>
+
+  </tbody>
+</table>
+<h2>Total: <%= @ticket[3] %></h2>

@@ -1,0 +1,57 @@
+<style>
+#video {
+    width: 100%;
+    height: 100%;
+}
+h1{
+    font-weight: bold;
+}
+.text-btn{
+
+    font-weight: bold;
+    background-color: #DC143C;
+}
+.text-btn{
+
+    font-weight: bold;
+    font-size: 1.5rem;
+    background-color: #87197a;
+    border-color: #87197a;
+}
+body{
+    background-color:#198754;
+}
+</style>
+
+<!-- Jumbotron -->
+<div class="border-bottom mt-1 border-dark border-4 p-4 text-center bg-success d-sm-flex flex-nowrap align-items-center justify-content-center">
+    <h1 class="mx-4">START YOUR JOURNEY TO ALL KINDS OF WONDERS</h1><%= link_to "BOOK YOUR FESTIVAL HERE", festivals_path, class: "btn btn-secondary mx-4 text-btn" %>
+</div>
+<!-- Jumbotron -->
+
+<div id="video-container d-flex">
+    <%= video_tag "/festival_video_heavy.mp4#t=60,501", "/festival_video.mp4#t=60,501", :muted => true, :autoplay => true, poster: "/hero-still.png", class:"background-video", type: "video/mp4", id: "video", :loop => true, class: "embed-responsive-item" %>
+</div>
+
+<!-- Jumbotron -->
+<div class="my-5 border-bottom border-top border-dark border-4 p-4 text-center bg-success d-sm-flex flex-nowrap align-items-center justify-content-center">
+    <h1 class="mx-4">LOOK AT SOME OF THE EXPERIENCES OUR FESTIVALS' LIST CAN OFFER</h1>
+</div>
+<!-- Jumbotron -->
+
+<div class="bg-success">
+    <div class="p-5">
+        <div class="d-flex justify-content-center mx-4 flex-wrap">
+            <% @products.each do |product| %>
+                <div class="card m-2 d-flex justify-content-center bg-dark" style="width: 32rem;">
+                    <div class="card-body d-flex justify-content-center video-container">
+                        <iframe class="border border-secondary" width="460" height="215" src="<%= product.youtube_video_path %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <%= link_to product.title.upcase, festival_path(product), class: "card-title text-btn btn btn-secondary mx-4 mt-1 mb-4 text-btn" %>
+                        
+                    
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

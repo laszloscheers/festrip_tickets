@@ -1,0 +1,31 @@
+<h1>Purchases#show</h1>
+<p>Not using this template anymore, instead loading a _purchases partial in profiles/show</p>
+<table>
+  <thead>
+
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    <% @purchases.each do |purchase| %>
+        <tr>
+            <% @all_purchase_items.each do |purchase_item| %>
+                <% if purchase.id == purchase_item.purchase_id%>
+                    <th><%= purchase_item.product.title %></th>
+                    <th><%= purchase_item.product.price %></th>
+                    <th><%= purchase_item.quantity %></th>
+                    <th><h4>Subtotal: <%= purchase_item.total %></th>
+                <% end %>
+            <% end %>
+        </tr>
+        <tr>
+            <th>Total:<%= purchase.subtotal %></th>
+        </tr>
+    <% end %>
+  </tbody>
+</table>

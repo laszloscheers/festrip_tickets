@@ -1,0 +1,43 @@
+<style>
+body{
+    background-color:#198754;
+}
+h1{
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.95);
+}
+.link-secondary{
+  text-decoration: none !important;
+}
+</style>
+<!-- Jumbotron -->
+<div class="mb-4 mt-1 border-bottom border-dark border-5 p-3 text-center bg-success d-sm-flex flex-nowrap align-items-center justify-content-center">
+    <h1 class="mx-4">CHOOSE A FESTIVAL FROM OUR LIST</h1>
+</div>
+<!-- Jumbotron -->
+<div class="p-4 d-flex justify-content-center m-4 flex-wrap">
+  <% @products.each do |product| %>
+    <div class="card m-4 border-3 border-light" style="width: 20rem;">
+      <%= link_to festival_path(product) do %>
+        <%= image_tag product.image_link, alt: product.title, class: "card-img-top img-fluid" %>
+      <% end %>
+      <div class="card-body px-3 pt-3">
+        <%= link_to festival_path(product), class: "link-secondary" do %>
+          <h5 class="card-title"><b><%= product.title %></b></h5>
+        <% end %>
+        <p class="card-text"><%= product.description %></p>
+      </div>
+      <div class="card-footer form-group px-4 pb-3 mt-0 m-3 border border-light rounded">
+        <h5 class="card-text d-flex justify-content-end">€<%= product.price.to_i %></h5>
+        <%= form_for @order_item do |f| %>
+          <%= f.hidden_field :product_id, :value => product.id %>
+          <%= f.number_field :quantity, :value => 1, :min => 1, class: "form-control" %>
+          <div class="d-flex justify-content-end">
+            <%= f.submit "Add to Basket ", class: "btn btn-secondary mt-3" %>
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
+  <% end %>
+</div>

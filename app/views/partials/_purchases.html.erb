@@ -1,0 +1,59 @@
+<%= stylesheet_link_tag "basket_show" %>
+<style>
+body{
+    background-color:#198754;
+}
+.bold-stuff{
+    font-weight: bold;
+}
+.text-btn{
+    background-color: #DC143C;
+}
+</style>
+
+<% @purchases.each do |purchase| %>
+<div class="d-flex justify-content-center m-3">
+<div class="card">
+    <div class="row">
+        <div class="col-md-8 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col"><h4><b>Purchase ID: <%= purchase.id %></b></h4></div>
+                </div>
+            </div>
+            <% @all_purchase_items.each do |item| %>
+            <% if purchase.id == item.purchase_id%> 
+            <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col">
+                        <div class="row bold-stuff"><%= item.product.title %></div>
+                    </div>
+                    <div class="col bold-stuff">
+                      <%= item.quantity %> x
+                    </div>
+                    <div class="col bold-stuff"> &euro; <%= item.product.price %> <span class="close"></span></div>
+                    <div class="col bold-stuff">Subtotal &euro;<%= item.total %></div>
+                  </div>
+            </div>
+            <% end %>
+            <% end %>
+        </div>
+        <div class="col-md-4 summary">
+            <div><h5><b>Summary</b></h5></div>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col bold-stuff">Total without VAT</div>
+                <div class="col text-end bold-stuff">&euro; <%= purchase.subtotal %></div>
+            </div>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col">VAT</div>
+                <div class="col text-end">23%</div>
+            </div>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col bold-stuff">TOTAL PRICE</div>
+                <div class="col text-end bold-stuff">&euro; <%= purchase.total %></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<% end %>

@@ -1,0 +1,46 @@
+<style>
+.card{
+    line-height: 3rem;
+}
+</style>
+<div class=" my-4 d-flex justify-content-center">
+<div class=" px-2 pb-1 pt-1" style="width: 40rem;">
+  <div class="card m-4">
+    <div class="card-header">
+      <h2>Edit Profile <%= resource_name.to_s.humanize %></h2>
+    </div>
+    <div class="card-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field form-group m-2">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", :disabled => true %>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field form-group m-2">
+          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Your new password" %>
+          <% if @minimum_password_length %>
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+        <div class="field form-group m-2">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm your new password" %>
+        </div>
+        <div class="field form-group m-2">
+          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Your current password" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Update", class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>

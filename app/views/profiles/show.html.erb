@@ -1,0 +1,39 @@
+<style>
+.card-header{
+    font-weight: bold;
+}
+.button_to{
+  padding: 0 !important;
+}
+@media (max-width:562px) {
+.main { flex-direction: column; }
+.col { margin: 3% 0% 3% 0%; padding: 0 }
+}
+</style>
+
+<div class=" my-5 container">
+  <div class="card">
+    <div class="card-header text-center">
+      <h1>Profile</h1>
+    </div>
+    <div class="card-body">
+      <br/>
+      <div  class="text-center m-5">
+          <h2>Email: <%= current_user.email %></h2>
+          <br/>
+          <div class="d-flex flex-row justify-content-center">
+            <div class="d-flex flex-row align-items-center mx-3">
+              <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link", class: "btn btn-secondary" %>
+            </div>
+            <%= button_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+          </div>
+      </div>
+      <div class="card-header text-center my-5">
+        <h1>Purchases</h1>
+      </div>
+      <% if @purchases %>
+          <%= render 'partials/purchases'%>
+      <% end %>
+    </div>
+  </div>
+</div>
