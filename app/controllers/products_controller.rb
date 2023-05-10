@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  # Prevents CSRF attacks by raising an exception.
+  protect_from_forgery with: :exception
+  
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
