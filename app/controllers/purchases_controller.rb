@@ -1,11 +1,11 @@
 class PurchasesController < ApplicationController
+  # Prevents CSRF attacks by raising an exception.
+  protect_from_forgery with: :exception
 
   before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token
 
   def show
-    @purchases = current_user.purchases
-    @all_purchase_items = PurchaseItem.all
+    redirect_to(profiles_path)
   end
 
   def create
