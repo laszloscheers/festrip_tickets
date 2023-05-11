@@ -308,4 +308,28 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  # ! Create custom failure for turbo
+  class TurboFailureApp < Devise::FailureApp
+    def respond
+      if request_format == :turbo_stream
+        redirect
+      else
+        super
+      end
+    end
+
+    def skip_format?
+      %w(html turbo_stream */*).include? request_format.to_s
+    end
+  end
+
+  Devise.setup do |config|
+    config.parent_controller = 'TurboDeviseController'
+    config.navigational_formats = ['*/*', :html, :turbo_stream]
+    config.warden do |manager|
+      manager.failure_app = TurboFailureApp
+    end
+  end
+  
 end

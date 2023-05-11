@@ -30,13 +30,15 @@
     
     <%= render 'partials/header' %>
 
-
-
       <% if notice %>
-        <%= render 'partials/alerts' %>
+        <%= render 'partials/notice' %>
       <% end %>
-      <%= yield %>
 
+      <% if alert %>
+        <%= render 'partials/alert' %>
+      <% end %>
+
+      <%= yield %>
     
     <%= render 'partials/footer' %>
 

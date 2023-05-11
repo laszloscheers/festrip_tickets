@@ -1,5 +1,7 @@
 class OrderItemsController < ApplicationController
-
+    # Prevents CSRF attacks by raising an exception.
+    protect_from_forgery with: :exception
+    
     def create
 
         @order = current_order
