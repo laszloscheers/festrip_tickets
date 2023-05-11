@@ -103,7 +103,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp-relay.sendinblue.com",
     port: 587,
-    domain: "sendinblue.com",
+    domain: "festrip.fly.dev",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: "laszloscheers@gmail.com",
