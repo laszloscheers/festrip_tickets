@@ -106,7 +106,7 @@ Rails.application.configure do
     domain: "sendinblue.com",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "festrip-tickets@hotmail.com",
-    password: "7ZzYdQWDbfBXMS15"
+    user_name: "laszloscheers@gmail.com",
+    password: ""
   }
 end
