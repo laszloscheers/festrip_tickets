@@ -101,12 +101,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://festrip.fly.dev/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp-relay.sendinblue.com",
+    address: "smtp.office365.com",
     port: 587,
     domain: "festrip.fly.dev",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: "laszloscheers@gmail.com",
+    user_name: "festrip-tickets@hotmail.com",
     password: ""
   }
 end
