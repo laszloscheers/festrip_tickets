@@ -104,7 +104,7 @@ Rails.application.configure do
     address: "smtp.office365.com",
     port: 587,
     domain: "festrip.fly.dev",
-    authentication: "plain",
+    authentication: :login,
     enable_starttls_auto: true,
     user_name: "festrip-tickets@hotmail.com",
     password: ""
