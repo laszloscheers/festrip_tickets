@@ -68,3 +68,5 @@ group :production do
 end
 
 
+
+gem "dockerfile-rails", ">= 1.2", :group => :development
