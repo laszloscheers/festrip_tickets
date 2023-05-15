@@ -77,7 +77,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.office365.com",
     port: 587,
-    domain: "festrip.fly.dev",
+    domain: "festrip-tickets.fly.dev",
     authentication: :login,
     enable_starttls_auto: true,
     user_name: "festrip-tickets@hotmail.com",
