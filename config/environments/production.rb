@@ -98,15 +98,15 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   
   # config for devise
-  config.action_mailer.default_url_options = { host: 'https://festrip-tickets.fly.dev/' }
+  config.action_mailer.default_url_options = { host: 'https://festriptickets.fly.dev/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.office365.com",
     port: 587,
-    domain: "festrip-tickets.fly.dev",
+    domain: "festriptickets.fly.dev",
     authentication: :login,
     enable_starttls_auto: true,
-    user_name: "festrip-tickets@hotmail.com",
-    password: ""
+    user_name: "festriptickets@hotmail.com",
+    password: "6497_tot"
   }
 end

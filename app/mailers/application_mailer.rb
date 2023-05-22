@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "festrip-tickets@hotmail.com"
+  default from: "festriptickets@hotmail.com"
   layout "mailer"
 end
