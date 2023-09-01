@@ -1,47 +1,50 @@
-# fly.toml app configuration file generated for festriptickets on 2023-05-19T13:28:20+02:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+# fly.toml file generated for festrip on 2023-01-17T19:35:52+01:00
 
-app = "festriptickets"
-primary_region = "mad"
+app = "festrip"
 kill_signal = "SIGINT"
-kill_timeout = "5s"
-console_command = "/rails/bin/rails console"
+kill_timeout = 5
+processes = []
 
-[experimental]
-  auto_rollback = true
+[build]
+  [build.args]
+    BUILD_COMMAND = "bin/rails fly:build"
+    SERVER_COMMAND = "bin/rails fly:server"
 
 [deploy]
   release_command = "bin/rails fly:release"
 
 [env]
-  PORT = "3000"
+  PORT = "8080"
+
+[experimental]
+  auto_rollback = true
 
 [[services]]
-  protocol = "tcp"
-  internal_port = 3000
+  http_checks = []
+  internal_port = 8080
   processes = ["app"]
-
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
+  protocol = "tcp"
+  script_checks = []
   [services.concurrency]
-    type = "connections"
     hard_limit = 25
     soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
 
   [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
     grace_period = "1s"
+    interval = "15s"
     restart_limit = 0
+    timeout = "2s"
 
 [[statics]]
-  guest_path = "/app/public"
+  guest_path = "/rails/public"
   url_prefix = "/"

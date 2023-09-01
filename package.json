@@ -16,5 +16,6 @@
   "scripts": {
     "build": "esbuild app/assets/javascript/application.js app/assets/javascript/leaflet-providers.js app/assets/javascript/controllers/application.js app/assets/javascript/controllers/hello_controller.js app/assets/javascript/controllers/index.js --bundle --sourcemap --outdir=app/assets/builds",
     "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
-  }
+  },
+  "packageManager": "yarn@1.22.15"
 }
