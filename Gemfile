@@ -69,4 +69,8 @@ end
 
 
 
+<<<<<<< HEAD
 gem "dockerfile-rails", ">= 1.3", :group => :development
+=======
+gem "dockerfile-rails", ">= 1.2", :group => :development
+>>>>>>> e3f28ed14f4dcd25ac949780fef5503dfdda9489

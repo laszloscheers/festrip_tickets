@@ -81,7 +81,11 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+<<<<<<< HEAD
     dockerfile-rails (1.3.0)
+=======
+    dockerfile-rails (1.2.5)
+>>>>>>> e3f28ed14f4dcd25ac949780fef5503dfdda9489
       rails
     erubi (1.12.0)
     ffi (1.15.5)
@@ -203,7 +207,7 @@ DEPENDENCIES
   bootsnap
   cssbundling-rails
   devise (~> 4.8, >= 4.8.1)
-  dockerfile-rails (>= 1.3)
+  dockerfile-rails (>= 1.2)
   ffi
   getyourvat (~> 0.1.4)
   jbuilder
